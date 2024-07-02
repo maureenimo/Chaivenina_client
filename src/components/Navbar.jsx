@@ -22,14 +22,59 @@ function Navbar() {
     cartItems ? cartItems.length : 0
   );
 
- 
+  useEffect(() => {
+    updateCartLength(savedCart ? JSON.parse(savedCart).length : 0);
+  }, [savedCart]);
 
   return (
     <div className="navbar">
       <a href="/" className="navbar-brand">
         <img src={logo} alt="Vevinah Brand" />
       </a>
-      
+      <ul className="navbar-nav">
+        <li className="navlink">
+          <Link style={{ textDecoration: "none", color: "#000000" }} to="/">
+            Home
+          </Link>
+        </li>
+        <li className="navlink">
+          <Link
+            style={{ textDecoration: "none", color: "#000000" }}
+            to="/menu"
+          >
+            Menu
+          </Link>
+        </li>
+        <li className="navlink">
+          <Link
+            style={{ textDecoration: "none", color: "#000000" }}
+            to="/contact-us"
+          >
+            Contact Us
+          </Link>
+        </li>
+        <li className="navlink">
+          <Link
+            style={{ textDecoration: "none", color: "#000000" }}
+            to="/about-us"
+          >
+            About Us
+          </Link>
+        </li>
+        <li className="navlink">
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "#000000",
+              transition: "none", 
+            }}
+            to={{ pathname: "/cart", state: { cartItems: cartItems } }}
+          >
+            <ShoppingCart />
+            {cartLength > 0 && <span>{cartLength}</span>}
+          </Link>
+        </li>
+      </ul>
     </div>
   );
 }
