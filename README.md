@@ -44,7 +44,7 @@ Follow these steps to set up the project locally:
 
 4. **Run the application:**
    ```sh
-   npm start
+   npm run dev
    ```
 
 5. **Open your browser:**
