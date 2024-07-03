@@ -26,7 +26,24 @@ function Cart() {
       navigate("/sign_up");
     }
   }
-
+  useEffect(() => {
+    const calculateTotal = () => {
+      let newSubtotal = 0;
+  
+      for (let i = 0; i < cartItems.length; i++) {
+        const price = parseFloat(cartItems[i].price);
+        const quantity = cartItems[i].quantity;
+  
+        newSubtotal += price * quantity;
+      }
+  
+      setTotal(newSubtotal.toFixed(2));
+      setSubtotal(newSubtotal.toFixed(2));
+    };
+  
+    calculateTotal();
+  }, [cartItems]);
+  
   return (
     <div>
       <Navbar />
