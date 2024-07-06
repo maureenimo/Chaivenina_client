@@ -1,3 +1,4 @@
+// Menu.js
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import Navbar from "./Navbar";
@@ -11,10 +12,13 @@ function Menu() {
   const [originalMenuItems, setOriginalMenuItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [cart, setCart] = useState(savedCart ? JSON.parse(savedCart) : []);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
+    console.log(savedCart);
     if (savedCart) {
       setCart(JSON.parse(savedCart));
+      // console.log(cart);
     }
   }, []);
 
@@ -37,10 +41,12 @@ function Menu() {
     );
     setMenuItems(filteredItems);
   };
+
   useEffect(() => {
     fetch("http://localhost:5000/dishes")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setMenuItems(data);
         setOriginalMenuItems(data);
       })
@@ -48,7 +54,7 @@ function Menu() {
         console.error("Error fetching menu:", error);
       });
   }, []);
-  
+
   const handleAddToCart = (item) => {
     const existingCartItem = cart.find((cartItem) => cartItem.id === item.id);
     if (existingCartItem) {
@@ -60,26 +66,28 @@ function Menu() {
         cartItem.id === item.id ? updatedCartItem : cartItem
       );
       setCart(updatedCart);
+      console.log(cart);
     } else {
       const updatedItem = { ...item, quantity: 1 };
       setCart([...cart, updatedItem]);
+      console.log(cart);
     }
-  
+
     setShowNotification(true);
   };
-  
+
   useEffect(() => {
     if (showNotification) {
       const timer = setTimeout(() => {
         setShowNotification(false);
       }, 1000);
-  
+
       return () => {
         clearTimeout(timer);
       };
     }
   }, [showNotification]);
-  
+
   return (
     <div>
       <Navbar />
@@ -88,6 +96,9 @@ function Menu() {
         <h2 className="menu-title">Menu</h2>
       </section>
       <div className="home-container">
+        {showNotification && (
+          <div className="notification">Item added to cart!</div>
+        )}
         <div className="container" style={{backgroundColor: "#ff9d5723"}}>
           <div className="cards-container" style={{display:"grid", gridTemplateColumns: "1fr 1fr 1fr 1fr"}}>
             {menuItems.map((item) => (
@@ -112,3 +123,4 @@ function Menu() {
 }
 
 export default Menu;
+
