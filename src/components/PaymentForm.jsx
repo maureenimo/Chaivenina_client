@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
 
 const MpesaPaymentPage = () => {
   const initialFormData = {
@@ -50,7 +52,8 @@ const MpesaPaymentPage = () => {
         <div className="form-dialogue">
           <form onSubmit={submitForm}>
             <h2>Mpesa Payment</h2>
-            <div className="form-item">
+
+            <div className="form-itemP">
               <label htmlFor="phone">Phone:</label>
               <input
                 type="number"
@@ -61,6 +64,7 @@ const MpesaPaymentPage = () => {
                 required
               />
             </div>
+
             <div className="form-item">
               <label htmlFor="amount">Amount:</label>
               <input
@@ -72,6 +76,7 @@ const MpesaPaymentPage = () => {
                 required
               />
             </div>
+
             <div className="form-buttons">
               <button
                 type="submit"
@@ -80,6 +85,11 @@ const MpesaPaymentPage = () => {
               >
                 {loading ? "Processing..." : "Submit"}
               </button>
+              <Link to="/tracking" >
+              <button className="continue-shopping">
+                Continue
+                </button>
+              </Link>
             </div>
           </form>
         </div>
