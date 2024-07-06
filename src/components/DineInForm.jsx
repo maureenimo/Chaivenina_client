@@ -25,6 +25,7 @@ const DineInReservation = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handleBookNow = async () => {
     try {
       const response = await fetch('http://localhost:5000/send_confirmation', {
@@ -38,9 +39,9 @@ const DineInReservation = () => {
           tableNumber,
         }),
       });
-  
+
       const data = await response.json();
-  
+
       if (data.success) {
         alert('Reservation confirmed! Confirmation email sent.');
       } else {
@@ -50,10 +51,10 @@ const DineInReservation = () => {
       alert(`Error: ${error.message}`);
     }
   };
-  
+
   return (
     <div>
-      <Navbar />
+    <Navbar />
       <div className="reservation-form">
         <h1>Reservation</h1>
         <DatePicker selected={selectedDate} onChange={handleDateChange} />
@@ -72,7 +73,7 @@ const DineInReservation = () => {
           ))}
         </select>
         <input type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
-        <button>Book Now</button>
+        <button onClick={handleBookNow}>Book Now</button>
       </div>
       <Footer />
     </div>
