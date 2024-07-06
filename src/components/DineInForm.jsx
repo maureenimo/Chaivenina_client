@@ -25,7 +25,32 @@ const DineInReservation = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
+  const handleBookNow = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/send_confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          numberOfGuests,
+          tableNumber,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        alert('Reservation confirmed! Confirmation email sent.');
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
+  };
+  
   return (
     <div>
       <Navbar />
