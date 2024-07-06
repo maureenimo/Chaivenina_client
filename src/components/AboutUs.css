@@ -1,33 +1,33 @@
 .about-us-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ff9d5723;
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff9d5723;
+  
 }
 
 .middle-content h2 {
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-    /* width:fit-content; */
-    margin-left: 35%;
-    text-decoration: underline;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  width:fit-content;
+  margin-left: 35%;
+  text-decoration: underline;
 }
 
 .middle-content p {
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-    /* width:fit-content; */
-    margin: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  width:fit-content;
+  margin: 15px;
 }
 
 .left-photo img {
-    width: 410px;
-    object-fit: cover;
-    height: 510px;
+  width: 410px;
+  object-fit: cover;
+  height: 510px;
 }
 
 .right-photo img {
-    object-fit: cover;
-    height: 510px;
+  object-fit: cover;
+  height: 510px;
 }

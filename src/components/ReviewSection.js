@@ -5,6 +5,7 @@ import reviewer2 from "../assets/reviewer2.jpg"
 import reviewer3 from "../assets/reviewer3.jpg"
 import reviewer4 from "../assets/reviewer4.jpg"
 
+
 const ReviewCard = ({ customerReview}) => {
   const { name, image, rating, content } = customerReview;
 
@@ -22,31 +23,34 @@ const ReviewCard = ({ customerReview}) => {
       </div>
       <p style={{color:"black"}} className="review-content">{content}</p>
     </div>
+    
+
   )
 }
+
 
 const ReviewSection = () => {
   let customerReviews = [{
     image: reviewer3,
-    name: "Christine",
+    name: "John Doe",
     rating: 4,
     content: "What a delightful dining experience!",
   },
   {
     image: reviewer1,
-    name: "Anthony",
+    name: "John Doe",
     rating: 5,
     content: "Exceptional in every way! Will definitely order again :)",
   },
   {
     image: reviewer4,
-    name: "Moh",
+    name: "John Doe",
     rating: 4,
     content: "A hidden gem! Highly recommend!",
   },
   {
     image: reviewer2,
-    name: "Harrison",
+    name: "John Doe",
     rating: 4,
     content: "Exquisite food and such a lovely space. Will be going again :)",
   },
@@ -54,11 +58,11 @@ const ReviewSection = () => {
 ];
 
   return (
-    <div className="review-cards">
-        {customerReviews.map((review, index) => (
-          <ReviewCard style={{color:"black"}} key={index} customerReview={review} />
-        ))}
-    </div>
+   <div className="review-cards">
+   {customerReviews.map((review, index) => (
+     <ReviewCard style={{color:"black"}} key={index} customerReview={review} />
+   ))}
+ </div>
 
   );
 };

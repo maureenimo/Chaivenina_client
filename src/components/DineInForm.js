@@ -4,6 +4,8 @@ import DatePicker from 'react-datepicker';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+
+
 const DineInReservation = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [numberOfGuests, setNumberOfGuests] = useState(1);

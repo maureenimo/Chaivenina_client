@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Carousel1 from "../assets/dineinphoto.jpg";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -10,6 +13,11 @@ const Register = () => {
     phone: "",
   });
 
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+  const navigate = useNavigate();
+  const image = [Carousel1];
+
   const handleChange = (e) => {
     const id = e.target.id;
     const value = e.target.value;
@@ -17,14 +25,34 @@ const Register = () => {
     setUser({ ...user, [id]: value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(user),
+    })
+      .then((res) => {
+        toast.success("Registered successfully.");
+        setRegistrationSuccess(true);
+        navigate("/sign_in");
+      })
+      .catch((err) => {
+        toast.error("Failed: " + err.message);
+        alert("Invalid");
+      });
+  };
+
   return (
     <div className="offset-lg-3 col-lg-6">
       <div className="card">
+      <img src={image} alt="menu-image" className="background-image"/>
         <div className="card-header">
           <h1>Sign up</h1>
         </div>
-        <div style={{ marginTop: "20%", borderRadius: "0" }} className="form-dialogue">
-          <form className="container">
+        <div style={{marginTop:"20%", borderRadius:"0"}} className="form-dialogue">
+          <form className="container" onSubmit={handleSubmit}>
             <div className="row">
               {["First name", "Last name", "Email", "Phone", "Password"].map(
                 (field) => (
@@ -46,14 +74,19 @@ const Register = () => {
                 )
               )}
             </div>
-            <div className="form-dialogue">
+            <div className="form-diaolgue">
               <button type="submit" className="continue-shopping">
-                Signup
-              </button>
+                {registrationSuccess ? "Registered!" : "Signup"}
+              </button>{" "}
             </div>
           </form>
         </div>
       </div>
+      {registrationSuccess && (
+        <div className="alert alert-success" role="alert">
+          Registration successful! You can now sign in.
+        </div>
+      )}
     </div>
   );
 };

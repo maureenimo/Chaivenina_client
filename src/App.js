@@ -1,7 +1,8 @@
+// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import SignIn from './components/Signin';
+import SignIn from './components/SignIn';
 import Register from './components/SignUp';
 import PaymentPage from './components/PaymentPage';
 import TrackingPage from './components/TrackingPage';

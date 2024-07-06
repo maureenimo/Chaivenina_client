@@ -12,6 +12,16 @@ function Cart() {
     savedCart ? JSON.parse(savedCart) : []
   );
 
+  // const location = useLocation();
+  // const cart = location.state ? location.state.cart : [];
+
+  // useEffect(() => {
+  //   console.log("Cart items:", cart);
+  //   if (JSON.stringify(cart) !== JSON.stringify(cartItems)) {
+  //     setCartItems(cart);
+  //   }
+  // }, [cart]);
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
