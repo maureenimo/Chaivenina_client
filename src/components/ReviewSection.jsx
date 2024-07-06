@@ -22,33 +22,31 @@ const ReviewCard = ({ customerReview}) => {
       </div>
       <p style={{color:"black"}} className="review-content">{content}</p>
     </div>
-    
-
   )
 }
 
 const ReviewSection = () => {
   let customerReviews = [{
     image: reviewer3,
-    name: "John Doe",
+    name: "Christine",
     rating: 4,
     content: "What a delightful dining experience!",
   },
   {
     image: reviewer1,
-    name: "John Doe",
+    name: "Anthony",
     rating: 5,
     content: "Exceptional in every way! Will definitely order again :)",
   },
   {
     image: reviewer4,
-    name: "John Doe",
+    name: "Moh",
     rating: 4,
     content: "A hidden gem! Highly recommend!",
   },
   {
     image: reviewer2,
-    name: "John Doe",
+    name: "Harrison",
     rating: 4,
     content: "Exquisite food and such a lovely space. Will be going again :)",
   },
