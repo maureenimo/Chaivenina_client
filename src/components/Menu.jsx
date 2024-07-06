@@ -37,7 +37,49 @@ function Menu() {
     );
     setMenuItems(filteredItems);
   };
-
+  useEffect(() => {
+    fetch("http://localhost:5000/dishes")
+      .then((res) => res.json())
+      .then((data) => {
+        setMenuItems(data);
+        setOriginalMenuItems(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching menu:", error);
+      });
+  }, []);
+  
+  const handleAddToCart = (item) => {
+    const existingCartItem = cart.find((cartItem) => cartItem.id === item.id);
+    if (existingCartItem) {
+      const updatedCartItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity + 1,
+      };
+      const updatedCart = cart.map((cartItem) =>
+        cartItem.id === item.id ? updatedCartItem : cartItem
+      );
+      setCart(updatedCart);
+    } else {
+      const updatedItem = { ...item, quantity: 1 };
+      setCart([...cart, updatedItem]);
+    }
+  
+    setShowNotification(true);
+  };
+  
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 1000);
+  
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [showNotification]);
+  
   return (
     <div>
       <Navbar />
